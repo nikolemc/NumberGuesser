@@ -39,10 +39,11 @@ namespace NumberGuesser
             var input = Console.ReadLine();
             bool correct = int.TryParse(input, out guess);
 
-            while (counter < 5)
+            do
             {
                 Console.Write("Guess: ");
                 Console.WriteLine(guess);
+
 
 
                 if (guess > randomNumber)
@@ -61,16 +62,33 @@ namespace NumberGuesser
                     input = Console.ReadLine();
                     int.TryParse(input, out guess);
                 }
+
                 else if (guess == randomNumber)
                 {
+                    //counter++;
                     Console.WriteLine("Congratualtions you win, you must be a mind reader!");
                     Console.ReadLine();
-                    counter = 5;
+                    //input = Console.ReadLine();
+                    //int.TryParse(input, out guess);
+
                 }
+
+                else if (counter > 5)
+                {
+                    Console.WriteLine("You Lose!");
+                    Console.ReadLine();
+                    input = Console.ReadLine();
+                    int.TryParse(input, out guess);
+
+                }
+
             }
+            while (guess != randomNumber && counter < 5);
 
 
-            //Console.ReadLine();
+
+
+
 
 
         }
