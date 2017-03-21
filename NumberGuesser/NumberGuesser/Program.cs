@@ -19,14 +19,52 @@ namespace NumberGuesser
             //After 5 incorrect guesses, the program should tell you that you lose.
             //You should display all the guesses to the screen
 
+            //Random random = new Random();
+            //int randomNumber = random.Next(0, 100);
+
+            //Console.WriteLine("Guess a number between 1 and 100?:");
+            //string line = Console.ReadLine();
+
+
             Random random = new Random();
-            int randomNumber = random.Next(0, 100);
+            int randomNumber = random.Next(1, 100);
+            int guess;
+            string guessString = "";
+            int counter = 0;
 
+
+
+            Console.WriteLine($"shhh don't tell anyone but the answer is {randomNumber}");
             Console.WriteLine("Guess a number between 1 and 100?:");
-            string line = Console.ReadLine();
-         
+            var input = Console.ReadLine();
+            bool correct = int.TryParse(input, out guess);
 
-          
+            while (counter < 5)
+            {
+                Console.Write("Guess: ");
+                Console.WriteLine(guess);
+
+
+                if (guess > randomNumber)
+                {
+                    counter++;
+                    Console.WriteLine("No, the number I'm thinking of is lower.");
+                    Console.WriteLine("Try again:");
+                    input = Console.ReadLine();
+                    int.TryParse(input, out guess);
+                }
+                else if (guess < randomNumber)
+                {
+                    counter++;
+                    Console.WriteLine("No, the number I'm thinking of is higher.");
+                    Console.WriteLine("Try again:");
+                    input = Console.ReadLine();
+                    int.TryParse(input, out guess);
+                }
+            }
+
+
+            Console.ReadLine();
 
 
         }
