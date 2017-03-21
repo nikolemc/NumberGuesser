@@ -61,10 +61,16 @@ namespace NumberGuesser
                     input = Console.ReadLine();
                     int.TryParse(input, out guess);
                 }
+                else if (guess == randomNumber)
+                {
+                    Console.WriteLine("Congratualtions you win, you must be a mind reader!");
+                    Console.ReadLine();
+                    counter = 5;
+                }
             }
 
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
 
         }
