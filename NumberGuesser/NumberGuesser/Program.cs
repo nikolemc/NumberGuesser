@@ -29,21 +29,17 @@ namespace NumberGuesser
             Random random = new Random();
             int randomNumber = random.Next(1, 100);
             int guess;
-           // string guessString = "";
+            string UserGuesses;
             int counter = 0;
-            int[] guessvalues = new int[5];
-           
+            //var GuessValues = new int[10];
+            UserGuesses = "";
+
 
 
             Console.WriteLine($"shhh don't tell anyone but the answer is {randomNumber}");
             Console.WriteLine("Guess a number between 1 and 100?:");
             var input = Console.ReadLine();
             bool correct = int.TryParse(input, out guess);
-
-            for (int i = 0; i < counter; i++)
-            {
-                Console.WriteLine($"You guessed = {guessvalues[i]}");
-            }
 
 
             do
@@ -52,56 +48,61 @@ namespace NumberGuesser
                 Console.WriteLine(guess);
 
 
-
-                if (guess > randomNumber)
+                if (guess != randomNumber)
                 {
-                    counter++;
-                    Console.WriteLine($"You guessed {guess}. The number I'm thinking of is lower.");
-                    Console.WriteLine("Try again:");
-                    input = Console.ReadLine();
-                    int.TryParse(input, out guess);
+                    if (counter > 0)
+                    {
+                        UserGuesses = (UserGuesses + ", ");
+                    }
+                    UserGuesses = (UserGuesses + guess);
 
-                    
+                    if (counter >= 4)
+                    {
+                        Console.WriteLine($"You Lose! The answer was {randomNumber}. Your guesses were: " + UserGuesses);
+
+                        Console.ReadLine();
+
+
+                    }
+
+
+                    else if (guess > randomNumber)
+                    {
+
+                        Console.WriteLine($"You guessed {guess}. The number I'm thinking of is lower.");
+                        Console.WriteLine("Try again:");
+                        input = Console.ReadLine();
+                        int.TryParse(input, out guess);
+
+
+
+
+                    }
+                    else if (guess < randomNumber)
+                    {
+                        Console.WriteLine($"You guessed {guess}. The number I'm thinking of is higher.");
+                        Console.WriteLine("Try again:");
+                        input = Console.ReadLine();
+                        int.TryParse(input, out guess);
+                    }
+
 
 
                 }
-                else if (guess < randomNumber)
-                {
-                    counter++;
-                    Console.WriteLine($"You guessed {guess}. The number I'm thinking of is higher.");
-                                       
-                    input = Console.ReadLine();
-                    int.TryParse(input, out guess);
-                }
 
-                else if (guess == randomNumber)
-                {
-                    //counter++;
-                    Console.WriteLine("Congratualtions you win, you must be a mind reader!");
-                    Console.ReadLine();
-                    //input = Console.ReadLine();
-                    //int.TryParse(input, out guess);
 
-                }
-
-                else if (counter > 6)
-                {
-                    Console.WriteLine("You Lose!");
-                
-                    Console.ReadLine();
-                    
-
-                }
-
-                
-
+                counter++;
             }
             while (guess != randomNumber && counter < 5);
 
-
-
-
-
+            if (guess == randomNumber)
+            {
+                //counter++;
+                Console.WriteLine("Congratulations you win, you must be a mind reader!");
+                Console.ReadLine();
+                //input = Console.ReadLine();
+                //int.TryParse(input, out guess);
+            }
 
 
         }
