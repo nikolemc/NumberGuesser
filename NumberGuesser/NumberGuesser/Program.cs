@@ -38,6 +38,7 @@ namespace NumberGuesser
             int counter = 0;
             var GuessValues = new int[5];
             UserGuesses = "";
+            bool duplicateGuess;
 
 
 
@@ -51,6 +52,29 @@ namespace NumberGuesser
             {
                 Console.Write("Guess: ");
                 Console.WriteLine(guess);
+
+                if (counter > 0)
+                {
+                    duplicateGuess = false;
+
+                    for (int i = 0; i < counter; i++)
+                    {
+
+                       if (GuessValues[i] == guess)
+                        {
+                            duplicateGuess = true;
+                        }
+                    }
+
+                    if  (duplicateGuess == true)
+                    {
+                        Console.WriteLine("You already used this number! Are you feeling all right?");
+                        Console.WriteLine("Try again:");
+                        input = Console.ReadLine();
+                        int.TryParse(input, out guess);
+                    }
+                }
+
 
                 GuessValues[counter] = guess;
                           
