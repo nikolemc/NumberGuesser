@@ -19,6 +19,11 @@ namespace NumberGuesser
             //After 5 incorrect guesses, the program should tell you that you lose.
             //You should display all the guesses to the screen
 
+            //Level 2
+            //When you display the past guesses to the screen, you should display whether or not they are too high or too low
+            //If you guess the same number twice, the program should ask you if you're feeling all right (or something similarly sarcastic).
+
+
             //Random random = new Random();
             //int randomNumber = random.Next(0, 100);
 
@@ -31,7 +36,7 @@ namespace NumberGuesser
             int guess;
             string UserGuesses;
             int counter = 0;
-            //var GuessValues = new int[10];
+            var GuessValues = new int[5];
             UserGuesses = "";
 
 
@@ -47,25 +52,38 @@ namespace NumberGuesser
                 Console.Write("Guess: ");
                 Console.WriteLine(guess);
 
+                GuessValues[counter] = guess;
+                          
 
                 if (guess != randomNumber)
                 {
-                    if (counter > 0)
-                    {
-                        UserGuesses = (UserGuesses + ", ");
-                    }
-                    UserGuesses = (UserGuesses + guess);
-
+                    
                     if (counter >= 4)
                     {
-                        Console.WriteLine($"You Lose! The answer was {randomNumber}. Your guesses were: " + UserGuesses);
+                        // Console.WriteLine($"You Lose! The answer was {randomNumber}. Your guesses were: " + UserGuesses);
+                        Console.WriteLine("You Lost! Your guesses were:");
+
+
+                        for (int i = 0; i <= counter; i++)
+
+                        {
+                            if (GuessValues[i] < randomNumber)
+                            {
+                                Console.WriteLine($"{GuessValues[i]}: too low");
+                            }
+
+                            if (GuessValues[i] > randomNumber)
+                            {
+                                Console.WriteLine($"{GuessValues[i]}: too high");
+                            }
+
+                        }
 
                         Console.ReadLine();
 
 
                     }
-
-
+                         
                     else if (guess > randomNumber)
                     {
 
